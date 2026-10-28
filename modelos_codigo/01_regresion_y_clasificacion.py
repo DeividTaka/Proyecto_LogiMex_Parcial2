@@ -1,8 +1,3 @@
-"""
-PROYECTO LOGIMEX DISTRIBUCIÓN - PARCIAL 2
-Código 01: Modelos Supervisados (Regresión y Clasificación)
-"""
-
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -12,7 +7,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.metrics import mean_absolute_error, r2_score, classification_report, roc_auc_score
 
-# 1. Cargar el dataset preprocesado en el Parcial 1
 try:
     df = pd.read_csv('dataset_preprocesado/entregas_preprocesadas.csv')
     print("Dataset cargado correctamente.")
@@ -20,13 +14,11 @@ except FileNotFoundError:
     print("Error: Asegúrate de tener el archivo 'entregas_preprocesadas.csv' en la carpeta 'dataset_preprocesado/'.")
     exit()
 
-# Definir características (X) y variables objetivo (y)
 features = ['distancia_km', 'tiempo_plan_min', 'costo_mxn', 'tipo_servicio', 'clima', 'origen', 'destino']
 X = df[features]
 y_reg = df['retraso_min']
 y_clas = df['entregado_a_tiempo']
 
-# Preprocesador: Estandarización para numéricas y OneHotEncoder para categóricas
 cat_cols = ['tipo_servicio', 'clima', 'origen', 'destino']
 num_cols = ['distancia_km', 'tiempo_plan_min', 'costo_mxn']
 
